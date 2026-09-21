@@ -1,0 +1,597 @@
+@import "tailwindcss";
+
+/*
+ * As cores vêm do site.config.ts (theme) e são aplicadas como variáveis no <html>.
+ * Os valores abaixo são só o padrão caso alguma variável falte.
+ * Oficiais da marca: rosé #D8A4A0, rosé escuro #9F7173, sálvia #8AA09B, petróleo #658383, linho #EBE8E1.
+ */
+:root {
+  --brand: #476262;
+  --brand-contrast: #ffffff;
+  --brand-soft: #dce3e0;
+  --ink: #2b3d3c;
+  --muted: #566562;
+  --surface: #f5f2ec;
+  --surface-alt: #ebe8e1;
+  --line: #d9d3c9;
+  --radius: 18px;
+  --rose: #d8a4a0;
+  --rose-deep: #9f7173;
+  --rose-text: #855a5c;
+  --sage: #8aa09b;
+  --petrol: #658383;
+  --petrol-deep: #3a5150;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-contrast: var(--brand-contrast);
+  --color-brand-soft: var(--brand-soft);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-line: var(--line);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+  --color-rose-text: var(--rose-text);
+  --color-sage: var(--sage);
+  --color-petrol: var(--petrol);
+  --color-petrol-deep: var(--petrol-deep);
+  --radius-brand: var(--radius);
+  /* EB Garamond nos títulos, Montserrat no texto (manual da marca). */
+  --font-display: var(--font-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-brand), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Estilos de base na camada "base": utilitários do Tailwind sempre ganham deles. */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-brand), ui-sans-serif, system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif), ui-serif, Georgia, serif;
+    font-weight: 500;
+    text-wrap: balance;
+    letter-spacing: -0.012em;
+  }
+
+  /* Títulos grandes em Garamond: entrelinha curta, como numa capa de livro. */
+  .display {
+    font-family: var(--font-serif), ui-serif, Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.018em;
+    line-height: 1.04;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .on-dark :focus-visible,
+  [data-hero="dark"] :focus-visible {
+    outline-color: var(--surface);
+  }
+
+  ::selection {
+    background: var(--rose);
+    color: var(--ink);
+  }
+}
+
+@layer components {
+  /* Links de texto: sublinhado discreto que fica cheio no hover */
+  .link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+    transition: text-decoration-color 0.25s ease;
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* Botões */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.98rem;
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .btn-primary {
+    background: var(--brand);
+    color: var(--brand-contrast);
+  }
+  .btn-primary:hover {
+    background: var(--petrol-deep);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--rose) 45%, transparent);
+  }
+  .btn-secondary {
+    border: 1px solid color-mix(in srgb, var(--ink) 28%, transparent);
+    color: var(--ink);
+    background: transparent;
+  }
+  .btn-secondary:hover {
+    border-color: var(--ink);
+    background: color-mix(in srgb, var(--ink) 4%, transparent);
+  }
+  .btn-inverse {
+    background: var(--surface);
+    color: var(--ink);
+  }
+  .btn-inverse:hover {
+    background: #ffffff;
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--rose) 55%, transparent);
+  }
+  .btn-ghost-light {
+    border: 1px solid color-mix(in srgb, #ffffff 55%, transparent);
+    color: #ffffff;
+    background: transparent;
+  }
+  .btn-ghost-light:hover {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--surface);
+  }
+
+  /* Padrão da marca (dois corações que formam o infinito), em ladrilho leve */
+  .pattern-rose {
+    background-image: url("/marca/padrao-rose.svg");
+    background-size: 132px;
+  }
+  .pattern-white {
+    background-image: url("/marca/padrao-branco.svg");
+    background-size: 132px;
+  }
+
+  /*
+   * Traço de batimento: a assinatura visual do site. Uma linha rosé que corre reta e dá
+   * um pulso. Desenha uma vez quando entra na tela (ou na carga, no topo).
+   */
+  .trace path {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .trace {
+    overflow: visible;
+    clip-path: inset(-20% 0 -20% 0);
+    transition: clip-path 2.4s cubic-bezier(0.65, 0, 0.25, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .js [data-reveal="trace"]:not([data-revealed]) .trace {
+    clip-path: inset(-20% 100% -20% 0);
+  }
+  .trace-load {
+    animation: trace-draw 2.6s cubic-bezier(0.65, 0, 0.25, 1) 0.5s both;
+  }
+  @keyframes trace-draw {
+    from {
+      clip-path: inset(-20% 100% -20% 0);
+    }
+    to {
+      clip-path: inset(-20% 0 -20% 0);
+    }
+  }
+  /* o pulso "bate" uma vez depois de desenhado */
+  .trace-beat {
+    animation: trace-beat 1.4s ease-out 2.9s both;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @keyframes trace-beat {
+    0% {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    35% {
+      transform: scale(1.12);
+      opacity: 1;
+    }
+    60% {
+      transform: scale(0.97);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Corpo dos artigos (HTML do CMS) */
+  .prose-outbox {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--ink);
+    overflow-wrap: break-word;
+  }
+  .prose-outbox > * + * {
+    margin-top: 1.25em;
+  }
+  .prose-outbox h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    font-weight: 500;
+    margin-top: 2.1em;
+    scroll-margin-top: 6rem;
+  }
+  .prose-outbox h3 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-weight: 500;
+    margin-top: 1.8em;
+    scroll-margin-top: 6rem;
+  }
+  .prose-outbox h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1.6em;
+  }
+  .prose-outbox h2 + *,
+  .prose-outbox h3 + *,
+  .prose-outbox h4 + * {
+    margin-top: 0.6em;
+  }
+  .prose-outbox a {
+    color: var(--brand);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .prose-outbox strong {
+    font-weight: 650;
+  }
+  .prose-outbox ul,
+  .prose-outbox ol {
+    padding-left: 1.4em;
+  }
+  .prose-outbox ul {
+    list-style: disc;
+  }
+  .prose-outbox ol {
+    list-style: decimal;
+  }
+  .prose-outbox li + li {
+    margin-top: 0.45em;
+  }
+  .prose-outbox li::marker {
+    color: var(--rose-deep);
+  }
+  .prose-outbox blockquote {
+    border-left: 3px solid var(--rose);
+    padding: 0.25em 0 0.25em 1.1em;
+    font-family: var(--font-serif), Georgia, serif;
+    font-size: 1.3em;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .prose-outbox img {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+  }
+  .prose-outbox figcaption {
+    margin-top: 0.6em;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .prose-outbox hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 2.5em 0;
+  }
+  .prose-outbox code {
+    font-size: 0.9em;
+    background: var(--surface-alt);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+  }
+  .prose-outbox pre {
+    background: var(--ink);
+    color: var(--surface);
+    padding: 1em 1.2em;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+  }
+  .prose-outbox pre code {
+    background: none;
+    padding: 0;
+  }
+  .prose-outbox table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .prose-outbox th,
+  .prose-outbox td {
+    border-bottom: 1px solid var(--line);
+    padding: 0.6em 0.8em;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-outbox th {
+    font-weight: 650;
+  }
+
+  /* FAQ com <details> */
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item .faq-icon {
+    transition: transform 0.35s ease;
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-item {
+    interpolate-size: allow-keywords;
+  }
+  .faq-item::details-content {
+    height: 0;
+    overflow: clip;
+    transition:
+      height 0.45s cubic-bezier(0.2, 0.75, 0.15, 1),
+      content-visibility 0.45s allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    height: auto;
+  }
+
+  /* Carrossel no celular: rola na horizontal com encaixe, sem barra visível. */
+  .snap-row {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.25rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  @media (min-width: 640px) {
+    .snap-row {
+      scroll-padding-inline: 2rem;
+    }
+  }
+  .snap-row::-webkit-scrollbar {
+    display: none;
+  }
+  .snap-row > * {
+    scroll-snap-align: start;
+  }
+
+  /*
+   * Títulos: cada palavra sobe de dentro de uma máscara quando o título entra na tela.
+   * Só esconde com JS ativo (classe "js" no <html>), então sem JS tudo aparece normalmente.
+   */
+  .split-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.16em;
+    margin-bottom: -0.16em;
+  }
+  .split-word > span {
+    display: inline-block;
+    transition:
+      transform 1.05s cubic-bezier(0.2, 0.75, 0.15, 1),
+      opacity 1s ease;
+    transition-delay: calc(var(--i, 0) * 60ms + var(--d, 0ms));
+  }
+  .js [data-reveal="words"]:not([data-revealed]) .split-word > span {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+
+  /* Textos e blocos: sobem com leve desfoque */
+  [data-reveal="fade"] {
+    transition:
+      opacity 1s ease,
+      transform 1s cubic-bezier(0.2, 0.75, 0.15, 1),
+      filter 1s ease;
+    transition-delay: var(--d, 0ms);
+  }
+  .js [data-reveal="fade"]:not([data-revealed]) {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(6px);
+  }
+
+  /*
+   * Fotos: descobertas de cima para baixo, como uma cortina. O recorte fica na foto
+   * (não no bloco), para o bloco continuar "visível" para o IntersectionObserver.
+   */
+  [data-reveal="image"] img {
+    clip-path: inset(0 0 0 0);
+    transition:
+      clip-path 1.4s cubic-bezier(0.7, 0, 0.2, 1),
+      transform 1.9s cubic-bezier(0.2, 0.75, 0.15, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .js [data-reveal="image"]:not([data-revealed]) img {
+    clip-path: inset(0 0 100% 0);
+    transform: scale(1.1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal]:not([data-revealed]) .split-word > span,
+    .js [data-reveal="fade"]:not([data-revealed]),
+    .js [data-reveal="image"]:not([data-revealed]) img {
+      transform: none;
+      opacity: 1;
+      filter: none;
+      clip-path: none;
+    }
+    .js [data-reveal="trace"]:not([data-revealed]) .trace,
+    .trace-load {
+      clip-path: none;
+      animation: none;
+    }
+    .trace-beat {
+      animation: none;
+    }
+  }
+
+  /* Foto do topo: aproxima devagar uma vez, na carga */
+  .hero-media {
+    animation: hero-zoom 14s cubic-bezier(0.2, 0.6, 0.3, 1) both;
+  }
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-media {
+      animation: none;
+    }
+  }
+
+  /* Foto que aproxima devagar no hover dos cards */
+  .zoom-media img {
+    transition:
+      transform 1.2s cubic-bezier(0.2, 0.75, 0.15, 1),
+      clip-path 1.4s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+  .zoom-media:hover img,
+  .zoom-media:focus-within img {
+    transform: scale(1.05);
+  }
+
+  /* Mapa: tons quentes, puxados para o linho da marca */
+  .map-canvas .maplibregl-canvas {
+    filter: saturate(0.55) sepia(0.14) contrast(1.02);
+  }
+  .map-canvas .maplibregl-ctrl-group {
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px -12px rgb(43 61 60 / 0.45);
+  }
+  .map-canvas .maplibregl-popup-content {
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-family: var(--font-brand), system-ui, sans-serif;
+    box-shadow: 0 18px 38px -16px rgb(43 61 60 / 0.45);
+  }
+
+  /* Marcadores do mapa: ponto petróleo com halo rosé */
+  .place-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: var(--brand);
+    border: 4px solid var(--surface);
+    box-shadow:
+      0 0 0 0 color-mix(in srgb, var(--rose) 60%, transparent),
+      0 4px 12px -2px rgb(43 61 60 / 0.45);
+    cursor: pointer;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+  .place-dot:hover,
+  .place-dot.is-active {
+    transform: scale(1.3);
+    box-shadow:
+      0 0 0 10px color-mix(in srgb, var(--rose) 45%, transparent),
+      0 4px 12px -2px rgb(43 61 60 / 0.45);
+  }
+  .place-popup-title {
+    font-family: var(--font-serif), Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .place-popup-link {
+    display: inline-block;
+    margin-top: 0.35rem;
+    color: var(--brand);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Marcadores do formulário */
+  .chip-input:checked + span {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: var(--brand-contrast);
+  }
+  .chip-input:focus-visible + span {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+}
+
+/*
+ * Rolagem suave (Lenis). Fora das camadas de propósito: precisa vencer o "h-full" do <html>,
+ * senão o <html> fica com a altura da tela e o Lenis não percebe quando a página cresce.
+ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
