@@ -8,7 +8,7 @@ import { InstagramIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "./icons";
 const legal = [
   { label: "Política de Privacidade", href: "/politica-de-privacidade" },
   { label: "Política de Cookies", href: "/politica-de-cookies" },
-  { label: "LGPD: seus direitos", href: "/lgpd" },
+  { label: "LGPD", href: "/lgpd" },
   { label: "Termos de Uso", href: "/termos-de-uso" },
 ];
 

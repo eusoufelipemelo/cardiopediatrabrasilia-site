@@ -19,7 +19,7 @@ export function LegalPage({ title, intro, path, children }: { title: string; int
       <PageHeader
         title={title}
         intro={intro}
-        image={{ src: "/fotos/ecocardiografo-desktop.jpg", alt: "Consultório de cardiologia pediátrica da Dra. Michelle Sanches" }}
+        image={{ src: "/fotos/estudio-rose.jpg", alt: "Retrato da Dra. Michelle Sanches, sorrindo", portrait: true }}
         crumbs={[
           { name: "Início", path: "/" },
           { name: title, path },

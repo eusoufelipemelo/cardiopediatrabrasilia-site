@@ -18,7 +18,7 @@ function hasSolidTop(pathname: string) {
 
 /**
  * Cabeçalho em barra flutuante, com cantos arredondados e recuo das bordas.
- * Na Home (topo claro) fica escuro; nas páginas internas (foto com véu petróleo) fica claro.
+ * Os topos são claros em todas as páginas, então a barra usa o logo rosé e texto escuro.
  * Ao rolar, vira uma barra de linho translúcido. No celular, abre um menu de tela cheia.
  */
 export function SiteNav({ links, whatsappHref, ctaLabel }: { links: NavLink[]; whatsappHref: string | null; ctaLabel: string }) {
@@ -53,8 +53,8 @@ export function SiteNav({ links, whatsappHref, ctaLabel }: { links: NavLink[]; w
 
   const solidRoute = hasSolidTop(pathname);
   const solid = solidRoute || scrolled || open;
-  // Home: topo claro (logo rosé). Internas: foto escura (logo branco) até rolar.
-  const light = !solid && pathname !== "/";
+  // Todos os topos são claros (linho e foto sem véu): logo rosé e texto escuro sempre.
+  const light = false;
 
   return (
     <>
@@ -123,7 +123,7 @@ export function SiteNav({ links, whatsappHref, ctaLabel }: { links: NavLink[]; w
       {/* Fora do <header> de propósito: o backdrop-filter da barra criaria um bloco de contenção
           e este menu, que é "fixed", ficaria com a altura do cabeçalho. */}
       <div id="menu-mobile" hidden={!open} data-lenis-prevent className="fixed inset-0 z-30 overflow-y-auto bg-surface xl:hidden">
-        <div aria-hidden className="pattern-rose pointer-events-none absolute -right-10 bottom-0 h-72 w-72 opacity-25 [mask-image:radial-gradient(circle_at_70%_70%,#000,transparent_70%)]" />
+        <div aria-hidden className="pattern-rose pointer-events-none absolute -right-10 bottom-0 h-72 w-72 opacity-[0.08] [mask-image:radial-gradient(circle_at_70%_70%,#000,transparent_70%)]" />
         <nav aria-label="Principal (celular)" className="relative mx-auto flex min-h-full max-w-7xl flex-col px-5 pb-8 pt-28 sm:px-8">
           <ul>
             {links.map((l, i) => (

@@ -178,13 +178,14 @@
   }
 
   /* Padrão da marca (dois corações que formam o infinito), em ladrilho leve */
+  /* Pequeno e quase transparente: textura, não estampa. A opacidade fica em cada uso (0.04 a 0.08). */
   .pattern-rose {
     background-image: url("/marca/padrao-rose.svg");
-    background-size: 132px;
+    background-size: 46px;
   }
   .pattern-white {
     background-image: url("/marca/padrao-branco.svg");
-    background-size: 132px;
+    background-size: 46px;
   }
 
   /*
@@ -198,24 +199,62 @@
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
   }
-  .trace {
+  .trace-wrap {
+    position: relative;
+  }
+  .trace-wrap > svg,
+  .trace-sweep > svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     overflow: visible;
-    clip-path: inset(-20% 0 -20% 0);
-    transition: clip-path 2.4s cubic-bezier(0.65, 0, 0.25, 1);
+  }
+  /* linha de base, discreta */
+  .trace-base {
+    opacity: 0.38;
+  }
+  /*
+   * Brilho que percorre a linha sem parar, como no monitor: cada passagem pelo pico é uma
+   * batida. Máscara no invólucro HTML (funciona em qualquer navegador).
+   */
+  .trace-sweep {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.25) 55%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.25) 55%, #000 94%, transparent 100%);
+    -webkit-mask-size: 42% 100%;
+    mask-size: 42% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    animation: trace-sweep 2.2s linear infinite;
+  }
+  @keyframes trace-sweep {
+    from {
+      -webkit-mask-position: -75% 0;
+      mask-position: -75% 0;
+    }
+    to {
+      -webkit-mask-position: 175% 0;
+      mask-position: 175% 0;
+    }
+  }
+  /* desenho de entrada (uma vez): recorte da esquerda para a direita */
+  .trace-draw {
+    clip-path: inset(-50% 0 -50% 0);
+    transition: clip-path 2.2s cubic-bezier(0.65, 0, 0.25, 1);
     transition-delay: var(--d, 0ms);
   }
-  .js [data-reveal="trace"]:not([data-revealed]) .trace {
-    clip-path: inset(-20% 100% -20% 0);
+  .js [data-reveal="trace"]:not([data-revealed]) .trace-draw {
+    clip-path: inset(-50% 100% -50% 0);
   }
-  .trace-load {
-    animation: trace-draw 2.6s cubic-bezier(0.65, 0, 0.25, 1) 0.5s both;
+  .trace-load .trace-draw {
+    animation: trace-draw 2.4s cubic-bezier(0.65, 0, 0.25, 1) 0.4s both;
   }
   @keyframes trace-draw {
     from {
-      clip-path: inset(-20% 100% -20% 0);
+      clip-path: inset(-50% 100% -50% 0);
     }
     to {
-      clip-path: inset(-20% 0 -20% 0);
+      clip-path: inset(-50% 0 -50% 0);
     }
   }
   /* o pulso "bate" uma vez depois de desenhado */
@@ -469,10 +508,16 @@
       filter: none;
       clip-path: none;
     }
-    .js [data-reveal="trace"]:not([data-revealed]) .trace,
-    .trace-load {
+    .js [data-reveal="trace"]:not([data-revealed]) .trace-draw,
+    .trace-load .trace-draw {
       clip-path: none;
       animation: none;
+    }
+    .trace-sweep {
+      display: none;
+    }
+    .trace-base {
+      opacity: 1;
     }
     .trace-beat {
       animation: none;

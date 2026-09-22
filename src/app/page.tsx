@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ConditionTile } from "@/components/ConditionTile";
+import { CountUp } from "@/components/CountUp";
 import { Container } from "@/components/Container";
 import { Faq } from "@/components/Faq";
 import { HeartTrace } from "@/components/HeartTrace";
@@ -76,7 +77,7 @@ export default async function HomePage() {
           </div>
 
           <div className="relative flex flex-col px-3 pb-24 pt-9 sm:px-8 sm:pb-28 sm:pt-12 lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:min-h-[calc(100svh-1.5rem)] lg:justify-center lg:pb-32 lg:pl-14 lg:pr-4 lg:pt-32 xl:pl-20">
-            <div aria-hidden className="pattern-rose pointer-events-none absolute -left-10 top-24 hidden h-80 w-80 opacity-30 [mask-image:radial-gradient(circle,#000,transparent_68%)] lg:block" />
+            <div aria-hidden className="pattern-rose pointer-events-none absolute -left-10 top-24 hidden h-80 w-80 opacity-[0.1] [mask-image:radial-gradient(circle,#000,transparent_68%)] lg:block" />
             <h1 data-reveal="static" className="relative">
               <SplitTitle as="span" text={siteConfig.name} className="display block text-[2.9rem] leading-[0.98] text-ink sm:text-[4.2rem] lg:text-[4.6rem] xl:text-[5.4rem]" delay={150} />
               <span data-reveal="fade" style={{ "--d": "380ms" } as CSSProperties} className="mt-4 block max-w-[26ch] font-sans text-[1.1rem] font-medium leading-snug text-brand sm:text-[1.3rem]">
@@ -113,40 +114,47 @@ export default async function HomePage() {
 
       {/* ----------------------------------------------------------- manifesto */}
       <section aria-labelledby="manifesto" className="px-2 pt-2 sm:px-3 sm:pt-3">
-        <div className="relative overflow-hidden rounded-[22px] bg-rose py-20 text-ink sm:rounded-[32px] sm:py-28">
-          <div aria-hidden className="pattern-white pointer-events-none absolute inset-0 opacity-[0.16]" />
-          <Container className="relative grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
-            <div className="lg:col-span-6">
-              <SplitTitle id="manifesto" text={h.manifestoTitle} className="display max-w-[18ch] text-[2.4rem] sm:text-[3.3rem] lg:text-[3.7rem]" />
+        <div className="relative overflow-hidden rounded-[22px] bg-surface-alt py-24 sm:rounded-[32px] sm:py-32">
+          <div aria-hidden className="pattern-rose pointer-events-none absolute inset-0 opacity-[0.05]" />
+          <Container className="relative grid items-center gap-16 lg:grid-cols-12 lg:gap-10">
+            {/* retrato em moldura alta, com um fio rosé deslocado atrás: editorial, sem ornamento */}
+            <figure className="relative mx-auto w-full max-w-[460px] lg:col-span-5 lg:mx-0">
+              <div className="relative">
+                <span aria-hidden className="absolute inset-0 translate-x-4 translate-y-4 rounded-[20px] border border-rose-deep/45 sm:translate-x-6 sm:translate-y-6" />
+                <div data-reveal="image" className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-surface">
+                  <Image
+                    src="/fotos/topo-retrato-consultorio.jpg"
+                    alt="Dra. Michelle Sanches sorrindo no consultório"
+                    fill
+                    sizes="(min-width: 1024px) 460px, 90vw"
+                    className="object-cover object-[50%_30%]"
+                  />
+                </div>
+              </div>
+              <figcaption className="mt-10 text-[0.92rem] text-muted sm:mt-12">Dra. Michelle Sanches no consultório</figcaption>
+            </figure>
+
+            <div className="lg:col-span-6 lg:col-start-7">
+              <SplitTitle id="manifesto" text={h.manifestoTitle} className="display max-w-[16ch] text-[2.6rem] text-ink sm:text-[3.6rem] lg:text-[4rem]" />
+              <span aria-hidden className="mt-9 block h-px w-24 bg-rose-deep" />
+              <p data-reveal="fade" className="mt-9 max-w-[34ch] font-serif text-[1.6rem] leading-[1.35] text-ink sm:text-[1.85rem]">
+                {a.paragraphs[0]}
+              </p>
               <div className="mt-8 space-y-5">
-                {a.paragraphs.map((p, i) => (
-                  <p key={i} data-reveal="fade" style={{ "--d": `${i * 110}ms` } as CSSProperties} className="max-w-[56ch] text-[1.06rem] leading-relaxed">
+                {a.paragraphs.slice(1).map((p, i) => (
+                  <p key={i} data-reveal="fade" style={{ "--d": `${i * 110}ms` } as CSSProperties} className="max-w-[56ch] leading-relaxed text-muted">
                     {p}
                   </p>
                 ))}
               </div>
-              <Link href="/sobre" data-reveal="fade" className="link mt-8 inline-flex min-h-11 items-center gap-2 font-semibold">
-                Conhecer a Dra. Michelle
-                <ArrowIcon width={18} height={18} />
-              </Link>
-            </div>
-
-            {/* composição: retrato recortado num arco de linho + foto do equipamento */}
-            <div className="relative mx-auto w-full max-w-[520px] lg:col-span-5 lg:col-start-8">
-              <div data-reveal="image" className="relative aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[28px] bg-surface">
-                <div aria-hidden className="pattern-rose absolute inset-0 opacity-25" />
-                <Image
-                  src={a.expert.image.src}
-                  alt={a.expert.image.alt}
-                  fill
-                  sizes="(min-width: 1024px) 520px, 90vw"
-                  className="translate-y-[16%] scale-[1.05] object-cover object-[50%_0%]"
-                />
-              </div>
-              <div data-reveal="image" style={{ "--d": "250ms" } as CSSProperties} className="absolute -bottom-8 -left-4 w-[42%] overflow-hidden rounded-[20px] border-[6px] border-rose sm:-left-10">
-                <div className="relative aspect-[3/4]">
-                  <Image src="/fotos/ecocardiografo-equipamento.jpg" alt="Tela do ecocardiograma com a imagem colorida de um coração" fill sizes="220px" className="object-cover object-[50%_20%]" />
-                </div>
+              <div data-reveal="fade" className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t border-line pt-8">
+                <p className="leading-tight">
+                  <span className="block font-serif text-[1.5rem] italic text-ink">Dra. {a.expert.name}</span>
+                  <span className="mt-1 block text-[0.92rem] text-muted">{a.expert.credentials}</span>
+                </p>
+                <Link href="/sobre" className="btn btn-secondary">
+                  Conhecer a Dra. Michelle
+                </Link>
               </div>
             </div>
           </Container>
@@ -206,22 +214,24 @@ export default async function HomePage() {
 
       {/* ------------------------------------------------------------ você sabia */}
       <section aria-labelledby="sabia" className="px-2 sm:px-3">
-        <div className="relative overflow-hidden rounded-[22px] bg-petrol-deep py-20 text-white sm:rounded-[32px] sm:py-28">
-          <Container>
-            <Intro id="sabia" dark title="Você sabia?" text="Números que ajudam a entender por que a avaliação cardiológica na infância faz diferença." />
+        <div className="relative overflow-hidden rounded-[22px] bg-petrol-deep py-24 text-white sm:rounded-[32px] sm:py-32">
+          <Container className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <SplitTitle id="sabia" text="Você sabia?" className="display text-[2.8rem] sm:text-[4rem] lg:col-span-5 lg:text-[4.6rem]" />
+            <p data-reveal="fade" className="max-w-[46ch] leading-relaxed text-white/75 lg:col-span-5 lg:col-start-8 lg:pb-3">
+              Números que ajudam a entender por que a avaliação do coração na infância faz diferença, e por que o ecocardiograma é tão importante.
+            </p>
           </Container>
-          <HeartTrace pulseAt={0.62} className="mt-12 h-14 w-full text-rose sm:h-20" />
+
+          <HeartTrace pulseAt={0.5} strokeWidth={1.6} className="my-14 h-20 w-full text-rose sm:my-16 sm:h-24" />
+
           <Container>
-            <dl className="grid gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
               {siteConfig.facts.map((f, i) => (
-                <div
-                  key={f.value}
-                  data-reveal="fade"
-                  style={{ "--d": `${i * 120}ms` } as CSSProperties}
-                  className="flex flex-col-reverse gap-3 border-white/15 pt-2 sm:pr-8 lg:border-l lg:pl-8 lg:first:border-l-0 lg:first:pl-0"
-                >
-                  <dd className="max-w-[30ch] text-[0.98rem] leading-relaxed text-white/78">{f.label}</dd>
-                  <dt className="display text-[3.4rem] leading-none text-rose sm:text-[4rem]">{f.value}</dt>
+                <div key={f.value} data-reveal="fade" style={{ "--d": `${i * 120}ms` } as CSSProperties} className="border-t border-white/20 pt-7">
+                  <dt className="display whitespace-nowrap text-[3.6rem] leading-none text-rose sm:text-[4rem] xl:text-[4.6rem]">
+                    <CountUp value={f.value} />
+                  </dt>
+                  <dd className="mt-5 max-w-[28ch] text-[0.98rem] leading-relaxed text-white/78">{f.label}</dd>
                 </div>
               ))}
             </dl>
@@ -231,33 +241,41 @@ export default async function HomePage() {
 
       {/* ------------------------------------------------------------- a médica */}
       <section aria-labelledby="medica" className="py-24 sm:py-32">
-        <Container className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
-          <div className="relative mx-auto w-full max-w-[460px] lg:col-span-5">
-            <div data-reveal="image" className="relative aspect-square overflow-hidden rounded-full bg-sage">
-              <div aria-hidden className="pattern-white absolute inset-0 opacity-20" />
-              <Image src={a.expert.image.src} alt={a.expert.image.alt} fill sizes="(min-width: 1024px) 460px, 85vw" className="translate-y-[6%] scale-[1.08] object-contain object-bottom" />
+        <Container className="grid gap-14 lg:grid-cols-12 lg:gap-10">
+          {/* retrato grande, recorte fechado (cabeça e tronco), sobre o linho */}
+          <div className="relative lg:col-span-5">
+            <div data-reveal="image" className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-surface-alt lg:sticky lg:top-28">
+              <Image src="/fotos/estudio-linho.jpg" alt={a.expert.image.alt} fill sizes="(min-width: 1024px) 40vw, 92vw" className="object-cover object-[50%_18%]" />
+              {a.childrenServed ? (
+                <p className="absolute bottom-5 left-5 rounded-full bg-surface/90 px-5 py-2.5 text-[0.92rem] text-muted backdrop-blur">
+                  <strong className="font-serif text-[1.25rem] font-medium text-ink">{a.childrenServed}</strong> crianças atendidas
+                </p>
+              ) : null}
             </div>
           </div>
-          <div className="lg:col-span-6 lg:col-start-7">
-            <p data-reveal="fade" className="text-[1.05rem] font-medium text-rose-text">
+
+          <div className="lg:col-span-6 lg:col-start-7 lg:pt-6">
+            <p data-reveal="fade" className="text-[1rem] font-medium text-rose-text">
               Quem cuida do coração do seu filho
             </p>
-            <SplitTitle id="medica" text={`Dra. ${a.expert.name}`} className="display mt-3 text-[2.6rem] text-ink sm:text-[3.6rem]" />
-            <p data-reveal="fade" className="mt-2 text-[1.1rem] text-muted">
+            <SplitTitle id="medica" text={`Dra. ${a.expert.name}`} className="display mt-4 text-[3rem] leading-[0.98] text-ink sm:text-[4.4rem] xl:text-[5rem]" />
+            <p data-reveal="fade" className="mt-5 text-[1.1rem] text-muted">
               {a.expert.credentials}
               {a.expert.crm ? ` · CRM-DF ${a.expert.crm}` : ""}
               {a.expert.rqe ? ` · RQE ${a.expert.rqe}` : ""}
             </p>
-            <ol className="mt-10 border-l border-rose pl-7">
+
+            <h3 className="mt-14 text-[0.95rem] font-semibold text-ink">Formação</h3>
+            <ol className="mt-5 grid gap-x-10 sm:grid-cols-2">
               {a.education.map((e, i) => (
-                <li key={e.title} data-reveal="fade" style={{ "--d": `${i * 90}ms` } as CSSProperties} className="relative pb-7 last:pb-0">
-                  <span aria-hidden className="absolute -left-[33px] top-2 size-[11px] rounded-full border-2 border-rose bg-surface" />
-                  <p className="font-serif text-[1.4rem] leading-tight text-ink">{e.title}</p>
-                  <p className="mt-1 text-[0.98rem] text-muted">{e.place}</p>
+                <li key={e.title} data-reveal="fade" style={{ "--d": `${i * 90}ms` } as CSSProperties} className="border-t border-line py-6">
+                  <span className="font-serif text-[1rem] text-rose-deep">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="mt-2 font-serif text-[1.45rem] leading-tight text-ink">{e.title}</p>
+                  <p className="mt-2 text-[0.95rem] leading-snug text-muted">{e.place}</p>
                 </li>
               ))}
             </ol>
-            <Link href="/sobre" data-reveal="fade" className="btn btn-secondary mt-10">
+            <Link href="/sobre" data-reveal="fade" className="btn btn-primary mt-10">
               Ler a história completa
             </Link>
           </div>

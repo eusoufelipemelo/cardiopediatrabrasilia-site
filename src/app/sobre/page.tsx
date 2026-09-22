@@ -32,18 +32,17 @@ export default function AboutPage() {
           { name: "Início", path: "/" },
           { name: "Sobre", path: "/sobre" },
         ]}
-        image={{ src: "/fotos/ecocardiografo-desktop.jpg", alt: "Dra. Michelle Sanches sorrindo no consultório, ao lado do aparelho de ecocardiograma" }}
-        position="30% 30%"
+        image={{ src: "/fotos/topo-retrato-consultorio.jpg", alt: "Dra. Michelle Sanches sorrindo no consultório", position: "50% 25%" }}
       />
 
       {/* história */}
       <Container className="grid items-center gap-14 py-20 sm:py-28 lg:grid-cols-12 lg:gap-10">
-        <div className="relative mx-auto w-full max-w-[480px] lg:col-span-5">
-          <div data-reveal="image" className="relative aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[28px] bg-rose">
-            <div aria-hidden className="pattern-white absolute inset-0 opacity-25" />
-            <Image src={e.image.src} alt={e.image.alt} fill sizes="(min-width: 1024px) 480px, 90vw" className="translate-y-[16%] scale-[1.05] object-cover object-[50%_0%]" />
+        <figure className="relative mx-auto w-full max-w-[460px] lg:col-span-5 lg:mx-0">
+          <span aria-hidden className="absolute inset-0 -translate-x-4 translate-y-4 rounded-[20px] border border-rose-deep/45 sm:-translate-x-6 sm:translate-y-6" />
+          <div data-reveal="image" className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-surface-alt">
+            <Image src="/fotos/estudio-rose.jpg" alt={e.image.alt} fill sizes="(min-width: 1024px) 460px, 90vw" className="object-cover object-[50%_15%]" />
           </div>
-        </div>
+        </figure>
         <div className="lg:col-span-6 lg:col-start-7">
           <SplitTitle text={`Dra. ${e.name}`} className="display text-[2.6rem] text-ink sm:text-[3.6rem]" />
           <p data-reveal="fade" className="mt-2 text-[1.1rem] text-muted">

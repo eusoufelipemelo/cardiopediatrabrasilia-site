@@ -58,14 +58,14 @@ export default async function LinksPage() {
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-surface-alt">
-      <div aria-hidden className="pattern-rose pointer-events-none absolute inset-0 opacity-[0.14]" />
+      <div aria-hidden className="pattern-rose pointer-events-none absolute inset-0 opacity-[0.05]" />
       <div className="relative mx-auto w-full max-w-[480px] px-4 pb-12 pt-4">
         {/* cartão de apresentação */}
         <header className="relative overflow-hidden rounded-[28px] bg-rose px-6 pb-7 pt-8 text-center text-ink">
-          <div aria-hidden className="pattern-white absolute inset-0 opacity-20" />
+          <div aria-hidden className="pattern-white absolute inset-0 opacity-[0.07]" />
           <Image src="/marca/logo-horizontal-branco.svg" alt={siteConfig.name} width={7409} height={2000} unoptimized loading="eager" className="relative mx-auto h-14 w-auto" />
-          <div className="relative mx-auto mt-6 aspect-square w-48 overflow-hidden rounded-full border-[6px] border-surface bg-surface-alt">
-            <Image src={a.expert.image.src} alt={a.expert.image.alt} fill sizes="192px" loading="eager" className="translate-y-[4%] scale-[1.15] object-contain object-bottom" />
+          <div className="relative mx-auto mt-6 aspect-square w-52 overflow-hidden rounded-full border-[6px] border-surface bg-surface-alt">
+            <Image src="/fotos/estudio-linho.jpg" alt={a.expert.image.alt} fill sizes="(min-width: 480px) 400px, 70vw" loading="eager" className="origin-[50%_12%] scale-[2.15] object-cover object-top" />
           </div>
           <h1 className="display relative mt-5 text-[2.3rem] leading-none">{siteConfig.name}</h1>
           <p className="relative mt-2 text-[0.98rem] font-medium">Cardiologista pediátrica e ecocardiografista pediátrica</p>

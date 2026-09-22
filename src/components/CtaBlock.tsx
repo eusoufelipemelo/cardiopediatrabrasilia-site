@@ -8,7 +8,7 @@ export function CtaBlock({ title = siteConfig.cta.title, text = siteConfig.cta.t
   const wa = whatsappUrl(c.whatsapp, c.whatsappMessage);
   return (
     <section aria-label="Agendar com a Dra. Michelle Sanches" className="on-dark relative overflow-hidden rounded-[26px] bg-petrol-deep text-white">
-      <div aria-hidden className="pattern-white pointer-events-none absolute -right-16 -top-16 size-64 opacity-15 [mask-image:radial-gradient(circle,#000,transparent_70%)]" />
+      <div aria-hidden className="pattern-white pointer-events-none absolute -right-16 -top-16 size-64 opacity-[0.06] [mask-image:radial-gradient(circle,#000,transparent_70%)]" />
       <div className="relative grid gap-8 px-6 py-10 sm:px-10 sm:py-14 md:grid-cols-[1.4fr_1fr] md:items-end">
         <div>
           <Heading className="display text-[2rem] sm:text-[2.6rem]">{title}</Heading>

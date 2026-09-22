@@ -46,8 +46,7 @@ export default async function ConditionPage({ params }: PageProps<"/condicoes/[s
           { name: "O que acompanho", path: "/condicoes" },
           { name: c.title, path: `/condicoes/${c.slug}` },
         ]}
-        image={{ src: "/fotos/ecocardiografo-desktop.jpg", alt: "Consultório de cardiologia pediátrica com aparelho de ecocardiograma" }}
-        position="80% 30%"
+        image={{ src: "/fotos/estudio-linho.jpg", alt: "Retrato da Dra. Michelle Sanches, cardiologista pediátrica", portrait: true }}
       />
 
       <Container className="grid gap-14 py-20 sm:py-28 lg:grid-cols-12 lg:gap-10">

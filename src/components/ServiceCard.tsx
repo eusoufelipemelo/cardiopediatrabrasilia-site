@@ -43,7 +43,7 @@ export function ServiceCard({ service: s, feature = false }: { service: Service;
 
   return (
     <article data-reveal="fade" className="group relative flex h-full flex-col overflow-hidden rounded-[26px] bg-surface-alt p-7 transition-colors duration-500 hover:bg-rose/45 sm:p-8">
-      <div aria-hidden className="pattern-rose pointer-events-none absolute -right-8 -top-8 size-40 opacity-40 [mask-image:radial-gradient(circle_at_70%_30%,#000,transparent_70%)]" />
+      <div aria-hidden className="pattern-rose pointer-events-none absolute -right-8 -top-8 size-40 opacity-[0.12] [mask-image:radial-gradient(circle_at_70%_30%,#000,transparent_70%)]" />
       <p className="relative text-[0.95rem] font-medium text-rose-text">{s.scope}</p>
       <h3 className="display relative mt-2 max-w-[16ch] text-[1.75rem] text-ink">
         <Link href={href} className="after:absolute after:inset-0 after:rounded-[26px] focus-visible:outline-none">

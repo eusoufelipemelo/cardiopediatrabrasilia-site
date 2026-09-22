@@ -22,13 +22,13 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
+        image={{ src: "/fotos/topo-consultorio.jpg", alt: "Dra. Michelle Sanches no consultório, perto da janela, ao lado do aparelho de ecocardiograma", position: "45% 35%" }}
         title="Agende uma consulta"
         intro={`O agendamento é pelo WhatsApp ${c.whatsappDisplay}. Conte a idade da criança e o motivo da consulta, e escolha o local mais perto de vocês.`}
         crumbs={[
           { name: "Início", path: "/" },
           { name: "Contato", path: "/contato" },
         ]}
-        position="30% 35%"
       />
 
       <div className="pt-2 sm:pt-3">

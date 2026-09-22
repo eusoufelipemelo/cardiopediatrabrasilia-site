@@ -28,7 +28,7 @@ function BrandPanel({ slug }: { slug: string }) {
   if (slug === "sindrome-de-down") {
     return (
       <div data-reveal="fade" className="relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-[26px] bg-rose p-8 text-ink sm:p-10">
-        <div aria-hidden className="pattern-white absolute inset-0 opacity-20" />
+        <div aria-hidden className="pattern-white absolute inset-0 opacity-[0.07]" />
         <p className="display relative text-[4.5rem] leading-none sm:text-[6rem]">40 a 60%</p>
         <p className="relative mt-3 max-w-[30ch] text-[1.02rem] leading-snug">das crianças com Síndrome de Down têm uma cardiopatia congênita</p>
       </div>
@@ -43,7 +43,7 @@ function BrandPanel({ slug }: { slug: string }) {
   }
   return (
     <div data-reveal="fade" className="relative grid aspect-[4/3] place-items-center overflow-hidden rounded-[26px] bg-petrol-deep">
-      <div aria-hidden className="pattern-white absolute inset-0 opacity-[0.08]" />
+      <div aria-hidden className="pattern-white absolute inset-0 opacity-[0.05]" />
       <Image src="/marca/simbolo-rose.svg" alt="" width={200} height={176} unoptimized className="relative h-auto w-[30%]" />
     </div>
   );
@@ -59,8 +59,7 @@ export default function ServicesPage() {
           { name: "Início", path: "/" },
           { name: "Atendimentos", path: "/servicos" },
         ]}
-        image={{ src: "/fotos/ecocardiografo-desktop.jpg", alt: "Aparelho de ecocardiograma pediátrico no consultório da Dra. Michelle Sanches" }}
-        position="85% 30%"
+        image={{ src: "/fotos/topo-aparelho.jpg", alt: "Tela do ecocardiograma com a imagem colorida do coração, no consultório da Dra. Michelle Sanches", position: "50% 20%" }}
       />
 
       <Container className="py-20 sm:py-28">

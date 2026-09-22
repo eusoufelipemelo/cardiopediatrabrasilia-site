@@ -26,8 +26,7 @@ export default function ConditionsPage() {
           { name: "Início", path: "/" },
           { name: "O que acompanho", path: "/condicoes" },
         ]}
-        image={{ src: "/fotos/ecocardiografo-desktop.jpg", alt: "Tela do ecocardiograma com imagem colorida do coração, no consultório da Dra. Michelle Sanches" }}
-        position="92% 20%"
+        image={{ src: "/fotos/topo-exame.jpg", alt: "Mão da Dra. Michelle Sanches apoiada no painel do aparelho de ecocardiograma", position: "40% 40%" }}
       />
 
       <Container className="py-20 sm:py-28">
