@@ -24,7 +24,7 @@ export function SiteFooter() {
     <footer className="on-dark mt-auto px-2 pb-2 sm:px-3 sm:pb-3">
       <div className="relative overflow-hidden rounded-[22px] bg-petrol-deep text-surface sm:rounded-[32px]">
         <HeartTrace pulseAt={0.18} className="h-12 w-full text-rose/70" />
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1.4fr] lg:px-10">
+        <div className="mx-auto box-content grid max-w-[1140px] gap-12 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1.4fr]">
           <div>
             <Link href="/" aria-label={`${siteConfig.name}, página inicial`} className="inline-block rounded-md">
               <Image src="/marca/logo-vertical-branco.svg" alt="" width={2000} height={1321} unoptimized className="h-24 w-auto" />
@@ -102,7 +102,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="border-t border-surface/15">
-          <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-7 pb-24 text-sm text-surface/68 sm:px-8 sm:pb-7 lg:flex-row lg:items-center lg:justify-between lg:px-10">
+          <div className="mx-auto box-content flex max-w-[1140px] flex-col gap-5 px-5 py-7 pb-24 text-sm text-surface/68 sm:px-8 sm:pb-7 lg:flex-row lg:items-center lg:justify-between">
             <p>
               © {year} {siteConfig.legalName || siteConfig.name}
             </p>

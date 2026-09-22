@@ -60,7 +60,7 @@ export function SiteNav({ links, whatsappHref, ctaLabel }: { links: NavLink[]; w
     <>
       <header className={`${solidRoute ? "sticky" : "fixed"} inset-x-0 top-0 z-40 px-3 pt-3 sm:px-5 sm:pt-4`}>
         <div
-          className={`mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-full py-2 pl-5 pr-2 transition-[background-color,box-shadow,border-color] duration-500 sm:pl-7 ${
+          className={`mx-auto flex max-w-[1204px] items-center justify-between gap-4 rounded-full py-2 pl-5 pr-2 transition-[background-color,box-shadow,border-color] duration-500 sm:pl-7 lg:pl-8 ${
             solid
               ? "border border-line/80 bg-surface/88 shadow-[0_14px_34px_-22px_rgb(43_61_60/0.5)] backdrop-blur-md"
               : "border border-transparent bg-transparent"
@@ -124,7 +124,7 @@ export function SiteNav({ links, whatsappHref, ctaLabel }: { links: NavLink[]; w
           e este menu, que é "fixed", ficaria com a altura do cabeçalho. */}
       <div id="menu-mobile" hidden={!open} data-lenis-prevent className="fixed inset-0 z-30 overflow-y-auto bg-surface xl:hidden">
         <div aria-hidden className="pattern-rose pointer-events-none absolute -right-10 bottom-0 h-72 w-72 opacity-[0.08] [mask-image:radial-gradient(circle_at_70%_70%,#000,transparent_70%)]" />
-        <nav aria-label="Principal (celular)" className="relative mx-auto flex min-h-full max-w-7xl flex-col px-5 pb-8 pt-28 sm:px-8">
+        <nav aria-label="Principal (celular)" className="relative mx-auto flex min-h-full max-w-[1140px] flex-col px-5 pb-8 pt-28 sm:px-8">
           <ul>
             {links.map((l, i) => (
               <li key={l.href} className="border-b border-line" style={{ animation: `rise-in 0.6s ${i * 50}ms cubic-bezier(0.2,0.75,0.15,1) both` }}>

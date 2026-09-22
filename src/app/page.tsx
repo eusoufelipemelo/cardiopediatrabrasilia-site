@@ -76,7 +76,7 @@ export default async function HomePage() {
             <div aria-hidden className="absolute inset-0 hidden bg-[linear-gradient(to_right,var(--surface-alt),transparent_24%)] lg:block" />
           </div>
 
-          <div className="relative flex flex-col px-3 pb-24 pt-9 sm:px-8 sm:pb-28 sm:pt-12 lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:min-h-[calc(100svh-1.5rem)] lg:justify-center lg:pb-32 lg:pl-14 lg:pr-4 lg:pt-32 xl:pl-20">
+          <div className="relative flex flex-col px-3 pb-24 pt-9 sm:px-8 sm:pb-28 sm:pt-12 lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:min-h-[calc(100svh-1.5rem)] lg:justify-center lg:pb-32 lg:pl-[max(3.5rem,calc((100vw-1140px)/2-0.75rem))] lg:pr-4 lg:pt-32">
             <div aria-hidden className="pattern-rose pointer-events-none absolute -left-10 top-24 hidden h-80 w-80 opacity-[0.1] [mask-image:radial-gradient(circle,#000,transparent_68%)] lg:block" />
             <h1 data-reveal="static" className="relative">
               <SplitTitle as="span" text={siteConfig.name} className="display block text-[2.9rem] leading-[0.98] text-ink sm:text-[4.2rem] lg:text-[4.6rem] xl:text-[5.4rem]" delay={150} />

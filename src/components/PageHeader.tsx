@@ -57,7 +57,7 @@ export function PageHeader({
           <div aria-hidden className="absolute inset-0 hidden bg-[linear-gradient(to_right,var(--surface-alt),transparent_18%)] lg:block" />
         </div>
 
-        <div className="relative flex flex-col justify-center px-3 pb-24 pt-9 sm:px-8 sm:pb-28 lg:col-span-6 lg:row-start-1 lg:pb-32 lg:pl-14 lg:pr-10 lg:pt-36 xl:pl-20">
+        <div className="relative flex flex-col justify-center px-3 pb-24 pt-9 sm:px-8 sm:pb-28 lg:col-span-6 lg:row-start-1 lg:pb-32 lg:pl-[max(3.5rem,calc((100vw-1140px)/2-0.75rem))] lg:pr-10 lg:pt-36">
           <div data-reveal="fade">
             <Breadcrumbs items={crumbs} />
           </div>
