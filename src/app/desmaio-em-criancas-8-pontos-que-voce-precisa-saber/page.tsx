@@ -1,6 +1,6 @@
 import { permanentRedirect } from "next/navigation";
 
-/** Endereço de artigo do site anterior (GreatPages): leva ao conteúdo equivalente no site novo. */
+/** Endereço do artigo no site anterior (GreatPages): o mesmo artigo agora vive no blog, publicado pelo OutBox CMS. */
 export default function OldArticle() {
-  permanentRedirect("/condicoes/desmaio");
+  permanentRedirect("/blog/desmaio-em-criancas-8-pontos-que-voce-precisa-saber");
 }
